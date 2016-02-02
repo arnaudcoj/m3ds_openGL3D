@@ -16,10 +16,21 @@ GLApplication::GLApplication() {
 
   _angle=0.0;
 
+  // Q11 _projection de classe Matrix4 (déclaré dans GLApplication.h)
+//  _projection.setOrtho(-20,20,-20,20,5,100); // cf calcul de la matrice dans le cours
 
 
+  //Q13.1
+//  _projection.setOrtho(-18,22,-10,30,5,100);
+
+  //Q13.2
+//  _projection.setOrtho(-5,2,-10,10,5,100);
 
 
+  //Q14
+ //   _projection.setOrtho(-20,20,-20,20,5,1e8);
+
+    _projection.setOrtho(-20,20,-20,20,5,100);
 }
 
 
@@ -78,6 +89,13 @@ void GLApplication::draw() {
 
 
   glUseProgram(_shader.id());
+
+  //Q11
+  _shader.uniform("projection",_projection); // utilisation de la classe shader
+                                             // qui permet d'alléger la syntaxe OpenGL
+
+  _shader.uniform("transform",_transform); // utilisation de la classe shader
+                                             // qui permet d'alléger la syntaxe OpenGL
 
   _basicMesh.draw();
   glUseProgram(0);
