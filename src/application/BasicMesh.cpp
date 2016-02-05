@@ -123,16 +123,33 @@ void BasicMesh::initTetrahedron() {
 void BasicMesh::initObj(const ObjLoader &obj) {
   _attribute.clear();
   _element.clear();
+  Vector3 pos;
+  Vector3 norm;
 
+  //Q17
   // initialisation de _attribute :
   // - obj.nbFace() = nombre de triangles
   // - obj.positionVertex(i,j) = position du j-ème sommet dans le i-ème triangle (de type Vector3)
   // - obj.normalVertex(i,j) = normale du j-ème sommet dans le i-ième triangle (de type Vector3)
   for(unsigned int i=0;i<obj.nbFace();++i) {
     for(unsigned int j=0;j<3;++j) {
+        pos = obj.positionVertex(i, j);
+        _attribute.push_back(pos.x());
+        _attribute.push_back(pos.y());
+        _attribute.push_back(pos.z());
 
-    // TODO
+        norm = obj.normalVertex(i, j);
+        _attribute.push_back(norm.x());
+        _attribute.push_back(norm.y());
+        _attribute.push_back(norm.z());
 
+        //Q18
+/*
+        norm = obj.normalVertex(i, j);
+        _attribute.push_back((norm.x() + 1.) / 2.);
+        _attribute.push_back((norm.y() + 1.) / 2.);
+        _attribute.push_back((norm.z() + 1.) / 2.);
+*/
     }
   }
 
@@ -160,7 +177,6 @@ void BasicMesh::initVAO() {
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, 0);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, (void *) (3*sizeof(float)));
 
-
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,_elementBuffer);
 
   glEnableVertexAttribArray(0);
@@ -178,8 +194,10 @@ void BasicMesh::initDraw() {
 void BasicMesh::draw() {
   glBindVertexArray(_vao);
 
-  glDrawElements(GL_TRIANGLES,_element.size(),GL_UNSIGNED_INT,(const GLvoid *)(0*sizeof(GLuint)));
+  //glDrawElements(GL_TRIANGLES,_element.size(),GL_UNSIGNED_INT,(const GLvoid *)(0*sizeof(GLuint)));
 
+  //Q17
+  glDrawArrays(GL_TRIANGLES, 0, _attribute.size() / 6);
   glBindVertexArray(0);
 }
 

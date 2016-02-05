@@ -12,7 +12,7 @@ GLApplication::GLApplication() {
 
   _lightPosition.set(0,0,0);
 
-  _basicMesh.initTetrahedron();
+  //_basicMesh.initTetrahedron();
 
   _angle=0.0;
 
@@ -31,6 +31,20 @@ GLApplication::GLApplication() {
 //   _projection.setOrtho(-20,20,-20,20,5,1e8);
 
    _projection.setOrtho(-20,20,-20,20,5,100);
+
+   //Q16
+   /*
+    // _obj déjà déclaré en ObjLoader
+   _obj.readInit("cube.obj",Vector3(-10,-10,-30),Vector3(10,10,-10)); // reporte l'objet dans la boite d'extémités (-10,-10,-30) et (10,10,-10)
+   _basicMesh.initObj(_obj); // pour remplacer l'initialisation du tétraèdre
+   */
+
+   //Q19
+
+    // _obj déjà déclaré en ObjLoader
+   _obj.readInit("cow.obj",Vector3(-10,-10,-30),Vector3(10,10,-10)); // reporte l'objet dans la boite d'extémités (-10,-10,-30) et (10,10,-10)
+   _basicMesh.initObj(_obj); // pour remplacer l'initialisation du tétraèdre
+
 }
 
 
@@ -60,8 +74,13 @@ void GLApplication::initialize() {
   */
 
   _shader.attribute("position",0);
-  _shader.attribute("color",1);
+  //_shader.attribute("color",1);
+
+  //Q22
+  _shader.attribute("normal",1);
+
   _shader.read("openGL3D");
+
 
 
 
@@ -82,8 +101,10 @@ void GLApplication::update() {
   // avant l'affichage de la prochaine image (animation)
   // ...
 
-  _angle+=0.2;
+  //_angle+=0.2;
 
+  //Q21
+  _angle+=0.;
 
   _transform.setTranslation(0,0,-15);
   _transform.rotate(_angle,Vector3(1,0.2,0));
@@ -108,6 +129,9 @@ void GLApplication::draw() {
 
   _shader.uniform("transform",_transform); // utilisation de la classe shader
                                              // qui permet d'alléger la syntaxe OpenGL
+
+  //Q23
+  _shader.uniform("lightPosition", _lightPosition);
 
   _basicMesh.draw();
   glUseProgram(0);
