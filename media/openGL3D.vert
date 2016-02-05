@@ -11,9 +11,12 @@ out vec3 fColor;
 uniform mat4 projection;
 uniform mat4 transform;
 uniform vec3 lightPosition;
+uniform vec3 diffuseColor;
 
 void main() {
   //vec4 clipPosition=vec4(position,1);
+
+  //fColor=normal;
 
   //Q11
 /*
@@ -28,8 +31,6 @@ void main() {
 
   gl_Position=clipPosition;
 
-  //fColor=normal;
-
   //Q23
 
   vec3 N = normal;
@@ -37,6 +38,18 @@ void main() {
   N = normalize(N);
   L = normalize(L);
   float intensity = max(dot(N,L), 0.0);
-  fColor = vec3(intensity, intensity, intensity);
+  //fColor = vec3(intensity, intensity, intensity);
+  //Q24
+  fColor = intensity * diffuseColor;
 
+  //Q25
+  /*
+  vec4 N = vec4(normal, 1);
+  vec4 L = vec4(lightPosition, 1);
+  N = normalize(transform * N);
+  L = normalize(L);
+  float intensity = max(dot(N,L), 0.0);
+  fColor = intensity * diffuseColor;
+  */
+  //Comment transformer les normales ?
 }

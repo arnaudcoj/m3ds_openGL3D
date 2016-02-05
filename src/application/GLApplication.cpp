@@ -45,6 +45,13 @@ GLApplication::GLApplication() {
    _obj.readInit("cow.obj",Vector3(-10,-10,-30),Vector3(10,10,-10)); // reporte l'objet dans la boite d'extémités (-10,-10,-30) et (10,10,-10)
    _basicMesh.initObj(_obj); // pour remplacer l'initialisation du tétraèdre
 
+   //Q23
+   //_lightPosition = Vector3(0,0,0);
+
+   //Q24
+   //_lightPosition = Vector3(1., 0., 0.);
+   //_lightPosition = Vector3(0., 1., 0.);
+   _lightPosition = Vector3(0., 0., 1.);
 }
 
 
@@ -101,7 +108,7 @@ void GLApplication::update() {
   // avant l'affichage de la prochaine image (animation)
   // ...
 
-  //_angle+=0.2;
+  _angle+=2.;
 
   //Q21
   _angle+=0.;
@@ -132,6 +139,9 @@ void GLApplication::draw() {
 
   //Q23
   _shader.uniform("lightPosition", _lightPosition);
+
+  //Q25
+  _shader.uniform("diffuseColor", Vector3(0.8, 0.2, 0.2));
 
   _basicMesh.draw();
   glUseProgram(0);
