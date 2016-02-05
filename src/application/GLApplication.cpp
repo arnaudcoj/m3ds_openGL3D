@@ -16,21 +16,21 @@ GLApplication::GLApplication() {
 
   _angle=0.0;
 
-  // Q11 _projection de classe Matrix4 (déclaré dans GLApplication.h)
+    // Q11 _projection de classe Matrix4 (déclaré dans GLApplication.h)
 //  _projection.setOrtho(-20,20,-20,20,5,100); // cf calcul de la matrice dans le cours
 
 
-  //Q13.1
+    //Q13.1
 //  _projection.setOrtho(-18,22,-10,30,5,100);
 
-  //Q13.2
+    //Q13.2
 //  _projection.setOrtho(-5,2,-10,10,5,100);
 
 
-  //Q14
- //   _projection.setOrtho(-20,20,-20,20,5,1e8);
+    //Q14
+//   _projection.setOrtho(-20,20,-20,20,5,1e8);
 
-    _projection.setOrtho(-20,20,-20,20,5,100);
+   _projection.setOrtho(-20,20,-20,20,5,100);
 }
 
 
@@ -45,10 +45,19 @@ void GLApplication::initialize() {
 //  glLineWidth(2.0);
   glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
+  //Q8 et suite
+
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
-  glClearDepth(1);
+  glClearDepth(1.0);
 
+
+  //Q9
+  /*
+  glEnable(GL_DEPTH_TEST);
+  glDepthFunc(GL_GREATER);
+  glClearDepth(0.);
+  */
 
   _shader.attribute("position",0);
   _shader.attribute("color",1);
@@ -91,8 +100,11 @@ void GLApplication::draw() {
   glUseProgram(_shader.id());
 
   //Q11
+
   _shader.uniform("projection",_projection); // utilisation de la classe shader
                                              // qui permet d'alléger la syntaxe OpenGL
+
+  //Q15
 
   _shader.uniform("transform",_transform); // utilisation de la classe shader
                                              // qui permet d'alléger la syntaxe OpenGL

@@ -25,6 +25,7 @@ BasicMesh::BasicMesh() {
 
 
 void BasicMesh::initTetrahedron() {
+
 /*
     std::vector<float> position={
     -1,0,-1, // V0
@@ -46,6 +47,7 @@ void BasicMesh::initTetrahedron() {
   };
 */
 
+    //Q7
 /*
   std::vector<float> position = {
      -1,0,-1, //V0
@@ -80,6 +82,7 @@ void BasicMesh::initTetrahedron() {
   _element = { 0,1,2,3,4,5,6,7,8,9,10,11 };
 */
 
+    //Q10
     std::vector<float> position = {
          -20,0,-10, // V0
          10,0,-10, // V1
@@ -97,6 +100,8 @@ void BasicMesh::initTetrahedron() {
      // index for 4 triangles
      _element = { 0,1,2,0,2,3,0,1,3,1,2,3 };
 
+
+
   _attribute.clear();
   for(unsigned int i=0;i<position.size()/3;++i) {
 
@@ -111,6 +116,7 @@ void BasicMesh::initTetrahedron() {
     _attribute.push_back(color[i*3+2]);
 
   }
+
 }
 
 
