@@ -1,10 +1,7 @@
 Camus Tristan
 Cojez Arnaud
 
-Doit contenir :
-- ce que vous n'avez pas fait (et pourquoi). Précisez explicitement "tout à été fait et fonctionne parfaitement" si c'est le cas.
-- difficultés rencontrées.
-- commentaires éventuels sur le TP (points à éclaircir, longueur du sujet, etc).
+Tout à été fait et fonctionne parfaitement
 
 Q6.
 Il est nécessaire de dupliquer les sommets car chaque sommet est associé à une couleur. En dupliquant les sommets et en les associants avec d'autres couleurs, nous pourrons créer des triangles de couleurs différentes avec des sommets en des positions identiques.
